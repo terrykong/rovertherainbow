@@ -10,8 +10,26 @@ fi
 # A setup file to remember the installation steps to connect rpi to phone via bluetooth
 # Following: https://www.raspberrypi.org/forums/viewtopic.php?t=47466
 
+# Prereq
+apt-get update
+
 # Installs bluetooth stack
-apt install -y --no-install-recommends bluetooth
+apt-get install -y --no-install-recommends bluetooth
+apt-get install -y bluez blueman
+# Install bluez: https://learn.adafruit.com/install-bluez-on-the-raspberry-pi/installation
+wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.47.tar.xz 
+tar -xf bluez-5.47.tar.xz
+cd bluez-5.47
+apt-get install -y libusb-dev libdbus-1-dev libglib2.0-dev libudev-dev libical-dev libreadline-dev
+./configure
+make && make install
+
+#{ systemctl start bluetooth || true; }
+#systemctl enable bluetooth # to enable at boot
+#sed 's/ExecStart=\/usr\/local\/libexec\/bluetooth\/bluetoothd$/ExecStart=\/usr\/local\/libexec\/bluetooth\/bluetoothd --experimental/g' /lib/systemd/system/bluetooth.service > /lib/systemd/system/bluetooth.service.tmp
+#mv /lib/systemd/system/bluetooth.service.tmp /lib/systemd/system/bluetooth.service
+#systemctl daemon-reload
+#systemctl restart bluetooth
 
 # Find bluetooth ID from list of acceptable device names and pick the first one
 echo "-----------------------------------------------------------------------------"

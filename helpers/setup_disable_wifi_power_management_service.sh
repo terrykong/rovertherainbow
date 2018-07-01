@@ -12,7 +12,7 @@ fi
 SCRIPT_NAME=disable_wifi_power_management.sh
 SERVICE_NAME=disable_wifi_power_management
 
-echo '#!/bin/sh -\niwconfig wlan0 power off' > $HOME/$SCRIPT_NAME
+echo -e '#!/bin/sh -\niwconfig wlan0 power off' > $HOME/$SCRIPT_NAME
 chmod a+x $HOME/$SCRIPT_NAME
 
 echo "[Unit]

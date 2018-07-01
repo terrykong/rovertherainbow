@@ -9,7 +9,18 @@ sudo ./beacon_install.sh
 ===
 Connecting to that device:
 ```
-sudo rfcomm connect 0 "$(cat default_device | cut -f1)" 10 >/dev/null &
+$ bluetoothctl
+# inside bluetooth CLI
+agent on
+default-agent
+scan on #to find mac address
+scan off #once the mac address comes up
+pair <mac address>
+connect <mac address>
+trust <mac address>
+exit
+# Back in terminal
+$ hcitool rssi <mac address>
 ```
 
 ===
