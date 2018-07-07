@@ -16,6 +16,7 @@ apt-get update
 # Installs bluetooth stack
 apt-get install -y --no-install-recommends bluetooth
 apt-get install -y bluez blueman
+apt-get install python-bluez
 # Install bluez: https://learn.adafruit.com/install-bluez-on-the-raspberry-pi/installation
 wget http://www.kernel.org/pub/linux/bluetooth/bluez-5.47.tar.xz 
 tar -xf bluez-5.47.tar.xz
